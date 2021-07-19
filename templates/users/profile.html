@@ -1,0 +1,31 @@
+{% extends 'blog/base.html'%}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+    <div class="fb-profile">
+        <img align="left" class="fb-image-lg" src="{{user.profile.image.url}}" alt="{{user.username}}" style="width:100%;height:50vh;"/>
+        <img align="left" class="fb-image-profile thumbnail" src="{{user.profile.image.url}}" alt="{{user.username}}"/>
+        <div class="fb-profile-text">
+            <h1>{{user.username}}</h1>
+            <p>{{user.email}}</p>
+        </div>
+    </div>
+    <center>
+    <p style="font-size:50px;text-transform:uppercase;">modifier votre profile</p>
+        <form method="POST" enctype='multipart/form-data'>
+            {% csrf_token %}
+            {{p_form|crispy}}
+            {{u_form|crispy}}
+
+            <div class="form-group">
+                    <button class="btn-outline-info" type="submit">metre a jour</button>
+            </div>
+        </form>
+    </center>
+</div> <!-- /container -->  
+{% endblock content %}

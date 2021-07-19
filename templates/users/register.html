@@ -1,0 +1,35 @@
+{% extends 'blog/base.html'%}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container register-form">
+    <div class="form">
+        <div class="note">
+            <p>vous n'avez pas de compte alors crée votre compte en remplissant le formulaire </p>
+        </div>
+        <div class="form-content">
+            <div class="row">
+                <center>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                    <table style="width:100%;">
+                                        {{form_register|crispy}}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btnSubmit">Créé votre compte </button>
+                        <br>
+                        <br> <br><p>vous avez déjà un compte ? veillez vous <a href="{% url 'login'%}">connectez en cliquant ici</a></p>
+                    </form>
+                </center>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

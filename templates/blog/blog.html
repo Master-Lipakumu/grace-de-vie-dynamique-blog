@@ -1,0 +1,47 @@
+{% extends 'blog/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+  </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{% static 'css/font/img/car1.jpg'%}" alt="banniere du site" style="width: 100%;height: 50vh;position: center;background-size: cover;background-repeat: no-repeat;top: 0;left: 0;"/>
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Psaumes 77:12</h5>
+                <p>Je parlerai de toutes tes oeuvres, Je raconterai tes hauts faits.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--portfolio-->
+<div class="container" style="background:whitesmoke;">
+    <br>
+    <div class="row" style="margin-left:10px;">
+        {% for pub,like in likes.items %}
+        <div class="col-lg-4 col-sm-6 mb-4">
+            <div class="portfolio-item">
+                <a class="portfolio-link" data-toggle="modal" href="{% url 'Pub-detail' pub.id%}">
+                <div class="portfolio-hover">
+                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                </div>
+                <a href="{% url 'Pub-detail' pub.id%}"><img class="img-fluid" src="{{pub.image.url}}" alt="{{pub.titre}}"/></a>
+                </a>
+                <div class="portfolio-caption">
+                <a href="{% url 'Pub-detail' pub.id%}"><div class="portfolio-caption-heading" style="color:black;">{{pub.titre}}</div></a>
+                    <p class="card-text"><small style="color:black;">{{pub.date}} {{pub.auteurs}}</small></p>
+                </div>
+                <a href="{% url 'like' pub.id%}"><button class="btn-outline-info" type="submit">Like   {{like}}  </button></a>
+                <a href="{% url 'favoris' pub.id%}"><button class="btn-outline-info" type="submit">mettre en favoris</button></a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

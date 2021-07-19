@@ -1,0 +1,31 @@
+{% extends 'blog/base.html'%}
+
+{% load embed_video_tags%}
+
+{% load static %}
+
+{%block content %}
+<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+  </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{% static 'css/font/img/car2.jpg'%}" alt="banniere du site" style="width: 100%;height: 50vh;position: center;background-size: cover;background-repeat: no-repeat;top: 0;left: 0;"/>
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Josué 1:8</h5>
+                <p>Que ce livre de la loi ne s'éloigne point de ta bouche; médite-le jour et nuit, pour agir fidèlement selon tout ce qui y est écrit; car c'est alors que tu auras du succès dans tes entreprises, c'est alors que tu réussiras.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" style="background:whitesmoke;">
+    <div class="mt-5 px-5">
+        <p style="text-align: center;font-size:40px;"> Culte </p>
+        {% for i in videos_r %}
+        {% video i.video 'small' %}
+        {% endfor%}
+    </div>
+</div>
+
+{% endblock content%}

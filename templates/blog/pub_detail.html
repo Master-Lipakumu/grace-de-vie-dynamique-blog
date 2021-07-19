@@ -1,0 +1,39 @@
+{% extends 'blog/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container bootdey" style="margin:0 auto;width:100%;">
+<div class="col-md-12">
+<section class="panel">
+      <div class="panel-body">
+          <div class="col-md-6">
+              <div class="pro-img-list">
+                  <a href="{% url 'favoris' object.id%}">
+                      <img src="{{object.image.url}}" alt="{{object.titre}}">
+                  </a>
+              </div>
+          </div>
+          <div class="col-md-6">
+              <h4 class="pro-d-title">
+                  <a href="{% url 'favoris' object.id%}" class="">
+                      {{object.titre}}
+                  </a>
+              </h4>
+              <p>
+                 <div class="portfolio-caption-subheading" style="color:black;">{{object.description}}</div>
+              </p>
+              <div class="product_meta">
+                  {{object.auteurs}}
+              </div>
+              <p>
+                  <a href="{% url 'favoris' object.id%}"><button class="btn btn-round btn-danger" type="button"><i class="fa fa-shopping-cart"></i> ajouter en favoris </button></a>
+              </p>
+          </div>
+      </div>
+  </section>
+  </div>
+  </div>
+
+{% endblock content %}

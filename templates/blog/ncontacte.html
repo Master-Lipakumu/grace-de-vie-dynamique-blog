@@ -1,0 +1,36 @@
+{% extends 'blog/base.html'%}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container register-form">
+    <div class="form">
+        <div class="note">
+            <p>contacter directement l'église la grace de vie en remplissant ce formulaire</p>
+        </div>
+        <div class="form-content">
+            <div class="row">
+                <center>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="col-12 col-md-6 col-md-3">
+                            <div class="form-group">
+                                    
+                                        {{form_c|crispy}}
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btnSubmit">envoyer</button>
+                        <br>
+                        <br> <br><p>Predication <a href="{% url 'blog-app'%}">connectez en cliquant ici</a></p>
+                    </form>
+                </center>
+            </div>
+        </div>
+    </div>
+    <p>&copy; Copyright 2021 Copyright holder all rights reserved.</p>
+</div>
+{% endblock content %}

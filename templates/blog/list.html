@@ -1,0 +1,13 @@
+
+{% for pub in pubs %}
+<div class="col-sm-4 text-center">
+    <a href="/">
+    <img class="img-responsive" src="{{pub.image}}" alt="{{pub.titre}}">
+    </a>
+    <h3><a href="/">{{pub.titre}}</a></h3>
+    {% for predicateur in pub.predicateurs.all%}
+    <p>{{predicateur.nom}}</p>
+{% endfor %}
+</div>
+{% if forloop.counter|divisibleby:3%}<div class="clearfix"></div>{% endif%}
+{%endfor%}

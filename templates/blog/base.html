@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <meta name="Site de l'Eglise La Grace De Vie" content="Ce site web est la propriete de l'eglise la Grace De Vie cet eglise et ces membres sont basee sur la religion du chistiannisme">
+        <meta name="author" content="KRISTAL SERVICE">
+
+        <title>EGLISE LA GRACE DE VIE</title>
+
+        <link href='https://fonts.googleapis.com/css?family=raleway:400,500,600,300' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+
+        <link rel="stylesheet" href="{% static 'css/style.css'%}">
+        <link rel="stylesheet" href="{% static 'css/profile.css'%}">
+        <link rel="stylesheet" href="{% static 'css/register.css'%}">
+        <link rel="stylesheet" href="{% static 'css/pub_detail.css'%}">
+
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+        <script src="{% static 'css/src/main.js'%}"></script>
+
+
+        
+    </head>
+    <body>
+        <header class="container-fluid header">
+            <div class="container">
+                <a href="{% url 'index'%}" class="logo">EGLISE LA GRACE DE VIE</a>
+                <nav class="menu">
+                    <ul>
+                        <li><a href="{% url 'index'%}">Accueil</a></li>
+                        <li><a href="{% url 'predications'%}">Predication</a></li>
+                        <li><a href="{% url 'blog-app'%}">Blog</a></li>
+                        <li><a href="{% url 'login'%}">connexion</a></li>
+                        {% if user.is_authenticated%}
+                            {% if user.is_superuser %}
+                            <li><a href="{% url 'Publications'%}">Pub</a></li>
+                            <li><a href="{% url 'Pub-video'%}">Pubv</a></li>
+                            {%endif%}
+                            <li><a href="{% url 'profile'%}">profile</a></li>
+                            <li><a href="{% url 'mylist'%}">favoris</a></li>
+                            <li><a href="{% url 'logout'%}">déconnexion</a></li>
+                        {% endif%}
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <div class="contenue">
+            <div class="container">
+                {% if messages %}
+                    {% for msg in messages %}
+                        <div class="alert alert-{{msg.tags}}">
+                            {{msg}}
+                    {% endfor %}
+                {% endif %}
+            </div>
+            {% block content %}
+
+            {% endblock content %}
+        </div>
+    </body>
+</html>
